@@ -2,6 +2,7 @@ package br.com.atividade_colaborativa1.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.atividade_colaborativa1.conexao.FabricaDeConexao;
@@ -32,8 +33,26 @@ public class FuncionarioDAO {
         }
     }
 
-    public Funcionario byId(Long ind){ 
+    public Funcionario byId(Long id){
 
-        return null;
+        String query = "SELECT * FROM funcionario WHERE id=?";
+        try {
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            statement.setLong(1, id);
+            ResultSet resultado = statement.executeQuery();
+
+            Funcionario funcionario = new Funcionario();
+
+            while (resultado.next()) {
+                funcionario.setId(resultado.getLong("id"));
+                funcionario.setNomeCompleto(resultado.getString("nome_completo"));
+                funcionario.setMatricula(resultado.getString("Matricula")); 
+            }
+            return funcionario;
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
