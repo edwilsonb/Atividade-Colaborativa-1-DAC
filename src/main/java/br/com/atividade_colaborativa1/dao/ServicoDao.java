@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.atividade_colaborativa1.conexao.FabricaDeConexao;
 import br.com.atividade_colaborativa1.entidades.Servico;
@@ -28,7 +30,7 @@ public class ServicoDao {
         String sql = "CREATE TABLE IF NOT EXISTS servico ("
                 + "id SERIAL PRIMARY KEY,"
                 + "tipo VARCHAR(100),"
-                + "cod_servico BIGINT,"
+                + "cod_servico BIGINT UNIQUE,"
                 + "data VARCHAR(10),"
                 + "descricao TEXT,"
                 + "valor FLOAT"
@@ -58,6 +60,31 @@ public class ServicoDao {
             throw new RuntimeException(e);
         }
     }
+    
+    public List<Servico> all() {    
+		
+		try {
+			List<Servico> servicos = new ArrayList<Servico>();    
+			PreparedStatement stmt = this.connection.prepareStatement("select * from servico");
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Servico servico = new Servico();
+				servico.setId(rs.getLong("id"));
+				servico.setCodServico(rs.getLong("cod_servico"));
+				servico.setTipo(rs.getString("tipo"));
+				servico.setData(rs.getString("data"));
+				servico.setDescricao(rs.getString("descricao"));
+				servico.setValor(rs.getFloat("valor"));
+				servicos.add(servico); 
+			}
+			rs.close();
+			stmt.close();
+			return servicos;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}	
+	} 
     
     public Servico buscarPorCodServico(long codServico) {
         try {

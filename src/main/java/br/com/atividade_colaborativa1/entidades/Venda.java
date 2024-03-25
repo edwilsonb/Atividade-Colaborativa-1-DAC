@@ -3,11 +3,20 @@ package br.com.atividade_colaborativa1.entidades;
 import java.util.List;
 
 public class Venda {
+	private long id;
 	private long codVenda;
 	private long id_Veiculo;
 	private long codServico;
 	private List<Peca> pecas;
 	private float valorVenda;
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 
     public long getCodVenda() {
@@ -54,9 +63,8 @@ public class Venda {
 
 	@Override
 	public String toString() {
-		return "Venda [codVenda=" + codVenda + ", id_Veiculo=" + id_Veiculo + ", codServico=" + codServico + ", pecas="
+		return "Venda [id=" + id +", codVenda=" + codVenda + ", id_Veiculo=" + id_Veiculo + ", codServico=" + codServico + ", pecas="
 				+ pecas + ", valorVenda=" + valorVenda + "]";
 	}
-
     
 }

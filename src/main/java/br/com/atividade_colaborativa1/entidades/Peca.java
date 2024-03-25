@@ -1,9 +1,18 @@
 package br.com.atividade_colaborativa1.entidades;
 
 public class Peca {
+	private long id;
 	private long codPeca;
 	private float valor;
 	private String nome;
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	public long getCodPeca() {
 		return codPeca;
 	}
@@ -24,9 +33,6 @@ public class Peca {
 	}
 	@Override
 	public String toString() {
-		return "Peca [codPeca=" + codPeca + ", valor=" + valor + ", nome=" + nome + "]";
+		return "Peca [id=" + id +", codPeca=" + codPeca + ", valor=" + valor + ", nome=" + nome + "]";
 	}
-	
-	
-
 }

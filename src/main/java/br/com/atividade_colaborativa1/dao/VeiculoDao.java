@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.atividade_colaborativa1.conexao.FabricaDeConexao;
 import br.com.atividade_colaborativa1.entidades.Veiculo;
@@ -58,6 +60,30 @@ public class VeiculoDao {
             throw new RuntimeException(e);
         }
     }
+    
+    public List<Veiculo> all() {
+		
+		try {
+			List<Veiculo> veiculos = new ArrayList<Veiculo>();
+			PreparedStatement stmt = this.connection.prepareStatement("select * from veiculos");
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Veiculo veiculo = new Veiculo();
+				veiculo.setId(rs.getLong("id"));
+				veiculo.setPlaca(rs.getString("placa"));
+				veiculo.setModelo(rs.getString("modelo"));
+				veiculo.setMarca(rs.getString("marca")); 
+				
+				veiculos.add(veiculo);
+			}
+			rs.close();
+			stmt.close();
+			return veiculos;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}	
+	} 
     
     public Veiculo buscarPorId(long id) {
         try {

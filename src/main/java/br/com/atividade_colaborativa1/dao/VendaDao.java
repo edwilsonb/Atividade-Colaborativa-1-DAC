@@ -1,10 +1,11 @@
 package br.com.atividade_colaborativa1.dao;
 
-	import java.sql.Connection;
-	import java.sql.PreparedStatement;
-	import java.sql.ResultSet;
-	import java.sql.SQLException;
-	import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.atividade_colaborativa1.conexao.FabricaDeConexao;
 import br.com.atividade_colaborativa1.entidades.Venda;
@@ -28,8 +29,8 @@ import br.com.atividade_colaborativa1.entidades.Venda;
 	    public void criaTabelaVenda() {
 	        String sql = "CREATE TABLE IF NOT EXISTS venda ("
 	                + "id SERIAL PRIMARY KEY,"
-	                + "cod_venda BIGINT,"
-	                + "id_veiculo BIGINT,"
+	                + "cod_venda BIGINT UNIQUE,"
+	                + "id_veiculo BIGINT UNIQUE,"
 	                + "cod_servico BIGINT,"
 	                + "valor_venda FLOAT"
 	                + ")";
@@ -58,13 +59,38 @@ import br.com.atividade_colaborativa1.entidades.Venda;
 	        }
 	    }
 	    
+	    public List<Venda> all() {       
+			
+			try {
+				List<Venda> vendas = new ArrayList<Venda>();    
+				PreparedStatement stmt = this.connection.prepareStatement("select * from venda");
+				ResultSet rs = stmt.executeQuery(); 
+				
+				while (rs.next()) {
+					Venda venda = new Venda();
+					venda.setId(rs.getLong("id"));
+					venda.setId_Veiculo(rs.getLong("id_veiculo"));
+					venda.setCodVenda(rs.getLong("cod_venda"));
+					venda.setCodServico(rs.getLong("cod_servico"));					
+					venda.setValorVenda(rs.getFloat("valor_venda")); 
+					vendas.add(venda);  
+				}
+				rs.close();
+				stmt.close();
+				return vendas;  
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}	
+		} 
+	    
 	    public Venda buscarPorCodVenda(long codVenda) {
 	        try {
 	            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM venda WHERE cod_venda=?");
 	            stmt.setLong(1, codVenda);
 	            ResultSet rs = stmt.executeQuery();
-	            Venda venda = new Venda();
+	            Venda venda = new Venda(); 
 	            while (rs.next()) {
+	            	    venda.setId(rs.getLong("id")); 
 	                venda.setCodVenda(rs.getLong("cod_venda"));
 	                venda.setId_Veiculo(rs.getLong("id_veiculo"));
 	                venda.setCodServico(rs.getLong("cod_servico"));
@@ -104,5 +130,3 @@ import br.com.atividade_colaborativa1.entidades.Venda;
 	    }
 	    
 	}
-
-}

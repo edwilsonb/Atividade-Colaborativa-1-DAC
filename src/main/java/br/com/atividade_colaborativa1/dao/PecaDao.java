@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.atividade_colaborativa1.conexao.FabricaDeConexao;
 import br.com.atividade_colaborativa1.entidades.Peca;
@@ -27,7 +29,7 @@ public class PecaDao {
     public void criaTabelaPeca() {
         String sql = "CREATE TABLE IF NOT EXISTS peca ("
                 + "id SERIAL PRIMARY KEY,"
-                + "cod_peca BIGINT,"
+                + "cod_peca BIGINT UNIQUE,"
                 + "valor FLOAT,"
                 + "nome VARCHAR(100)"
                 + ")";
@@ -55,6 +57,29 @@ public class PecaDao {
         }
     }
     
+    public List<Peca> all() { 
+		
+		try {
+			List<Peca> pecas = new ArrayList<Peca>(); 
+			PreparedStatement stmt = this.connection.prepareStatement("select * from peca");
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Peca peca = new Peca();
+				peca.setId(rs.getLong("id"));
+				peca.setCodPeca(rs.getLong("cod_peca"));
+				peca.setValor(rs.getFloat("valor"));
+				peca.setNome(rs.getString("nome"));				
+				pecas.add(peca); 
+			}
+			rs.close();
+			stmt.close();
+			return pecas;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}	
+	}
+    
     public Peca buscarPorCodPeca(long codPeca) {
         try {
             PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM peca WHERE cod_peca=?");
@@ -62,6 +87,7 @@ public class PecaDao {
             ResultSet rs = stmt.executeQuery();
             Peca peca = new Peca();
             while (rs.next()) {
+            		peca.setId(rs.getLong("id"));
                 peca.setCodPeca(rs.getLong("cod_peca"));
                 peca.setValor(rs.getFloat("valor"));
                 peca.setNome(rs.getString("nome"));
@@ -70,7 +96,7 @@ public class PecaDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }     
     
     public Peca atualizarPeca(Peca peca) {
         try {

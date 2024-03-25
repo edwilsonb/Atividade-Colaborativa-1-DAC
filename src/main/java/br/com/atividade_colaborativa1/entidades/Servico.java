@@ -1,11 +1,19 @@
 package br.com.atividade_colaborativa1.entidades;
 
 public class Servico {
+	private long id;
 	private String tipo;
 	private long codServico;
 	private String data;
 	private String descricao;
 	private float valor;
+	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 	public String getTipo() {
 		return tipo;
@@ -40,8 +48,8 @@ public class Servico {
 	}
 	@Override
 	public String toString() {
-		return "Servico [tipo=" + tipo + ", codServico=" + codServico + ", data=" + data + ", descricao=" + descricao
+		return "Servico [id=" + id +", tipo=" + tipo + ", codServico=" + codServico + ", data=" + data + ", descricao=" + descricao
 				+ ", valor=" + valor + "]";
-	}
+	}	
 	
 }
