@@ -19,13 +19,30 @@ public class FuncionarioDAO {
         this.connection = new FabricaDeConexao().getConnection();
     }
 
+    public void criaTabelaFuncionario(){
+        String query = "CREATE TABLE IF NOT EXISTS fucionario("+ 
+        "id serial primary key," +
+        " nome_completo varchar(100 ) not null," 
+        + "endereco varchar(100) not null"
+        +"cargo varchar (20) not null"; 
+
+        try {
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            statement.execute();
+            statement.execute();
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void insereFuncionario (Funcionario funcionario){
 
         String query  = "INSERT INTO funcionario ( nome_completo, matricula ) values (?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, funcionario.getNomeCompleto());
-            statement.setString(2, funcionario.getMatricula());
+            statement.setString(3, funcionario.getEndereco());
+            statement.setString(4, funcionario.getCargo());
 
             statement.executeUpdate();
 
@@ -48,7 +65,8 @@ public class FuncionarioDAO {
             while (resultado.next()) {
                 funcionario.setId(resultado.getLong("id"));
                 funcionario.setNomeCompleto(resultado.getString("nome_completo"));
-                funcionario.setMatricula(resultado.getString("Matricula")); 
+                funcionario.setEndereco(resultado.getString("endereco"));
+                funcionario.setCargo(resultado.getString("cargo"));
             }
             return funcionario;
 
@@ -71,7 +89,8 @@ public class FuncionarioDAO {
                 Funcionario funcionario = new Funcionario();
                 funcionario.setId(resultado.getLong("id"));
                 funcionario.setNomeCompleto(resultado.getString("nome_completo"));
-                funcionario.setMatricula(resultado.getString("matricular"));
+                funcionario.setEndereco(resultado.getString("endereco"));
+                funcionario.setCargo(resultado.getString("cargo"));
 
                 funcionarios.add(funcionario);
             }
@@ -88,7 +107,8 @@ public class FuncionarioDAO {
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, funcionario.getNomeCompleto());
-            statement.setString(2, funcionario.getMatricula());
+            statement.setString(2, funcionario.getEndereco());
+            statement.setString(5, funcionario.getCargo());
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
