@@ -37,12 +37,12 @@ public class FuncionarioDAO {
 
     public void insereFuncionario (Funcionario funcionario){
 
-        String query  = "INSERT INTO funcionario ( nome_completo, matricula ) values (?, ?)";
+        String query  = "INSERT INTO funcionario ( nome_completo, endereco, cargo ) values (?, ?, ?)";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, funcionario.getNomeCompleto());
-            statement.setString(3, funcionario.getEndereco());
-            statement.setString(4, funcionario.getCargo());
+            statement.setString(2, funcionario.getEndereco());
+            statement.setString(3, funcionario.getCargo());
 
             statement.executeUpdate();
 
@@ -102,13 +102,14 @@ public class FuncionarioDAO {
         }
     }
     public void altera(Funcionario funcionario) {
-        String query = "UPDATE contatos SET nome_completo=?, matricula=? WHERE id=?";
+        String query = "UPDATE contatos SET nome_completo=?, endereco=?, cargo=? WHERE id=?";
     
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, funcionario.getNomeCompleto());
             statement.setString(2, funcionario.getEndereco());
-            statement.setString(5, funcionario.getCargo());
+            statement.setString(3, funcionario.getCargo());
+            statement.setLong(4, funcionario.getId());
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
