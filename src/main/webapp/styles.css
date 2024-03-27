@@ -43,7 +43,7 @@ label {
 }
 
 /* Estilo dos campos de entrada */
-input[type='text'] {
+input {
 	position:relative;
 	padding: 10px;
 	margin-bottom: 20px;
