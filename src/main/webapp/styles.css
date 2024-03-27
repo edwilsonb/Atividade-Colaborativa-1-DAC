@@ -59,8 +59,14 @@ button {
 	padding: 10px 20px;
 	border-radius: 5px;
 	cursor: pointer;
-	transition: background-color 0.3s ease;
+	transition: 0.3s ease;
 	margin-top: 10px;
+	font-size: 18px;
+
+}
+
+button a {
+	color: #fff;
 }
 
 button:hover {
@@ -72,4 +78,62 @@ button:hover {
 	color: #ff0000;
 	font-size: 0.8rem;
 	margin-top: 5px;
+}
+
+header {
+	background-color: #007bff;
+	height: 70px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.menu {
+	margin: auto 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+.menu a {
+	font-size: 25px;
+	color: #fff;
+	padding-bottom: 5px;
+	margin: 20px;
+	border-bottom: solid #007bff 3px;
+}
+
+.menu a:hover {
+	border-bottom: solid #0056b3 3px;
+	transition: 400ms;
+}
+
+.painel {
+	width: 700px;
+	height: 350px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin: auto;
+	margin-top: 100px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#add-entidades {
+	margin-right: 80px;
+}
+
+.opcoes {
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.opcoes a, button {
+	width: 100%;
 }
