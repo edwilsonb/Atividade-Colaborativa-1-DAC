@@ -110,7 +110,7 @@ a {
 }
 
 .painel {
-	width: 700px;
+	width: 650px;
 	height: 350px;
 	background-color: #fff;
 	border-radius: 5px;
@@ -124,7 +124,7 @@ a {
 }
 
 #add-entidades {
-	margin-right: 80px;
+	margin-right: 50px;
 }
 
 .opcoes {
