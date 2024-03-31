@@ -3,33 +3,26 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Adicionar Funcionário</title>
+		<title>Adicionar Serviço</title>
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
-		<header>
-			<div class="menu">
-				<a class="menu-item" href="index.html">Início</a>
-				<a class="menu-item" href="">Sair</a>
-			</div>
-		</header>
-		<h1>Adicionar Serviços</h1>
-		<form id="funcionario-form">
+		<h1>Adicionar Serviço</h1>
+		<form id="funcionario-form" action="addServico">
 			<label for="nome">Tipo:</label>
-			<input type="text" id="nome" name="nome" required />
+			<input type="text" id="tipo" name="tipo" required />
 
-			<label for="Codigo">Codigo do Serviço:</label>
-			<input type="number" id="nome" name="nome" required />
+			<label for="codServico">Codigo do Serviço:</label>
+			<input type="text" id="codServico" name="codServico" required />
 
-			<label for="Data">Data do Serviço</label>
-			<input type="date" id="endereço" name="endereço" required />
+			<label for="data">Data do Serviço:</label>
+			<input type="date" id="dataServico" name="dataServico" required />
 
-			<label for="Descrição">Descrição:</label>
-			<input type="text" id="cargo" name="cargo" required />
+			<label for="descricao">Descrição:</label>
+			<input type="text" id="descricao" name="descricao" required />
 
 			<label for="valor">Valor:</label>
-			<input type="number" id="R$" name="valor" required />
-
+			<input type="number" id="valor" name="valor" step=".01" required />
 			<button type="submit">Adicionar</button>
 		</form>
 	</body>

@@ -10,9 +10,9 @@ import java.sql.SQLException;
  */
 public class FabricaDeConexao {
 
-    private final String URL = "jdbc:postgresql://localhost:5432/Caminho do seu Coração";
-	private final String USER = "nomeDoUser";
-	private final String PASSWORD = "senha";
+    private final String URL = "jdbc:postgresql://localhost:5432/" + "DBDAC";
+	private final String USER = "postgres";
+	private final String PASSWORD = "020636";
 	private final String DRIVER_CLASS = "org.postgresql.Driver";
 	
 	private Connection createConnection()  throws ClassNotFoundException{

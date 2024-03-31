@@ -46,14 +46,13 @@ public class VeiculoDao {
     }
     
     public void inserirVeiculo(Veiculo veiculo) {
-        String sql = "INSERT INTO veiculo (id, id_cliente, placa, modelo, marca) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO veiculo (id_cliente, placa, modelo, marca) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setLong(1, veiculo.getId());
-            stmt.setLong(2, veiculo.getId_Cliente());
-            stmt.setString(3, veiculo.getPlaca());
-            stmt.setString(4, veiculo.getModelo());
-            stmt.setString(5, veiculo.getMarca());
+            stmt.setLong(1, veiculo.getId_Cliente());
+            stmt.setString(2, veiculo.getPlaca());
+            stmt.setString(3, veiculo.getModelo());
+            stmt.setString(4, veiculo.getMarca());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
@@ -65,12 +64,13 @@ public class VeiculoDao {
 		
 		try {
 			List<Veiculo> veiculos = new ArrayList<Veiculo>();
-			PreparedStatement stmt = this.connection.prepareStatement("select * from veiculos");
+			PreparedStatement stmt = this.connection.prepareStatement("select * from veiculo");
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
 				Veiculo veiculo = new Veiculo();
 				veiculo.setId(rs.getLong("id"));
+				veiculo.setId_Cliente(rs.getLong("id_cliente"));
 				veiculo.setPlaca(rs.getString("placa"));
 				veiculo.setModelo(rs.getString("modelo"));
 				veiculo.setMarca(rs.getString("marca")); 
@@ -104,14 +104,14 @@ public class VeiculoDao {
         }
     }
     
-    public Veiculo atualizarVeiculo(Veiculo veiculo) {
+    public Veiculo atualizarVeiculo(Veiculo veiculo, long id) {
         try {
             PreparedStatement stmt = this.connection.prepareStatement("UPDATE veiculo SET id_cliente = ?, placa = ?, modelo = ?, marca = ? WHERE id = ?");
             stmt.setLong(1, veiculo.getId_Cliente());
             stmt.setString(2, veiculo.getPlaca());
             stmt.setString(3, veiculo.getModelo());
             stmt.setString(4, veiculo.getMarca());
-            stmt.setLong(5, veiculo.getId());
+            stmt.setLong(5, id);
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected == 0) {
                 throw new RuntimeException("Nenhum veículo foi atualizado. Verifique o ID fornecido.");
