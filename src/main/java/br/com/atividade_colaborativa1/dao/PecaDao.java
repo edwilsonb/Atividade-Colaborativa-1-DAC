@@ -80,10 +80,10 @@ public class PecaDao {
 		}	
 	}
     
-    public Peca buscarPorCodPeca(long codPeca) {
+    public Peca byId(long id) {
         try {
-            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM peca WHERE cod_peca=?");
-            stmt.setLong(1, codPeca);
+            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM peca WHERE id=?");
+            stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
             Peca peca = new Peca();
             while (rs.next()) {
@@ -96,14 +96,15 @@ public class PecaDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }     
+    }
     
-    public Peca atualizarPeca(Peca peca) {
+    
+    public Peca atualizarPeca(Peca peca, long id) {
         try {
-            PreparedStatement stmt = this.connection.prepareStatement("UPDATE peca SET valor = ?, nome = ? WHERE cod_peca = ?");
+            PreparedStatement stmt = this.connection.prepareStatement("UPDATE peca SET valor = ?, nome = ? WHERE id = ?");
             stmt.setFloat(1, peca.getValor());
             stmt.setString(2, peca.getNome());
-            stmt.setLong(3, peca.getCodPeca());
+            stmt.setLong(3, id);
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected == 0) {
                 throw new RuntimeException("Nenhuma peça foi atualizada. Verifique o código da peça fornecido.");
@@ -114,10 +115,10 @@ public class PecaDao {
         }
     }
     
-    public void removerPeca(long codPeca) {
+    public void removerPeca(long id) {
         try {
-            PreparedStatement stmt = this.connection.prepareStatement("DELETE FROM peca WHERE cod_peca=?");
-            stmt.setLong(1, codPeca);
+            PreparedStatement stmt = this.connection.prepareStatement("DELETE FROM peca WHERE id=?");
+            stmt.setLong(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException();

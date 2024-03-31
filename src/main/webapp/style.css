@@ -1,0 +1,82 @@
+@charset "utf-8";
+body{
+	margin: 0;
+	padding: 0;
+}
+
+h1{
+	display:flex;
+	justify-content: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 20px;
+  margin-top:20px;
+  border-radius: 5px;
+}
+
+.button-remover {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin-bottom: 15px;
+  margin-top:15px;
+  border-radius:5px;
+  
+}
+
+.button-editar {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin-bottom: 15px;
+  margin-top:15px;
+  border-radius: 5px;
+}
+
+.capsbtn{
+	display: flex;
+	justify-content:center;	
+	
+}
+
+button:hover {
+  padding: 15px 20px;
+  cursor: pointer;
+}

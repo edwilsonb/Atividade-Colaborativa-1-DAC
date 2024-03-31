@@ -14,18 +14,23 @@ public class ClienteDao {
 
 	private Connection connection;
 	
-	public ClienteDao() throws ClassNotFoundException {
-		
-		this.connection = new FabricaDeConexao().getConnection();
-	}
+	public ClienteDao() {
+	    try {
+            this.connection = new FabricaDeConexao().getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao criar conexão com o banco de dados", e);
+        }
+    }
 	
 	public void criaTabelaCliente() {
 		
-		String sql = "CREATE TABLE IF NOT EXISTS clientes ("
-				+ "id serial primary key,"
-				+ "nome varchar(100) not null,"
-				+ "endereco varchar(100) not null"
-				+ "data_cadastro varchar(10) not null";
+		String sql = "CREATE TABLE IF NOT EXISTS cliente (" +
+	             "id SERIAL PRIMARY KEY," +
+	             "nome VARCHAR(100) NOT NULL," +
+	             "endereco VARCHAR(100) NOT NULL," +
+	             "data_cadastro VARCHAR(10) NOT NULL)";
+
 		
 		try {
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
@@ -39,7 +44,7 @@ public class ClienteDao {
 	
 	public void insereCliente(Cliente cliente) {
 		
-		String sql = "insert into clientes (nome, endereco, data_cadastro) values (?,?,?)";
+		String sql = "insert into cliente (nome, endereco, data_cadastro) values (?,?,?)";
 		
 		try {
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
@@ -57,7 +62,7 @@ public class ClienteDao {
 	
 	public Cliente byId(Long id) {
 		
-		String sql = "select * from clientes where id=?";
+		String sql = "select * from cliente where id=?";
 		
 		try {
 			PreparedStatement stmt = this.connection.prepareStatement(sql);
@@ -81,7 +86,7 @@ public class ClienteDao {
 		
 		try {
 			List<Cliente> clientes = new ArrayList<Cliente>();
-			PreparedStatement stmt = this.connection.prepareStatement("select * from clientes");
+			PreparedStatement stmt = this.connection.prepareStatement("select * from cliente");
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
@@ -103,7 +108,7 @@ public class ClienteDao {
 	
 	public void atualizar(Cliente cliente, long id) {
 		
-		String sql = "update clientes set nome=?, endereco=?, data_cadastro where id=?";
+		String sql = "update cliente set nome=?, endereco=?, data_cadastro=? where id=?";
 		
 		try {
 				PreparedStatement stmt = this.connection.prepareStatement(sql);
@@ -122,7 +127,7 @@ public class ClienteDao {
 	public void excluir(long id) {
 		
 		try {			
-				PreparedStatement stmt = this.connection.prepareStatement("delete from clientes where id=?");
+				PreparedStatement stmt = this.connection.prepareStatement("delete from cliente where id=?");
 				stmt.setLong(1, id);
 				stmt.execute();
 				stmt.close();

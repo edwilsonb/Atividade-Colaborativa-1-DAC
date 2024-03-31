@@ -51,6 +51,8 @@ input {
 	border-radius: 5px;
 }
 
+
+
 /* Estilo do botão */
 button {
 	background-color: #007bff;
@@ -136,4 +138,40 @@ a {
 
 .opcoes a, button {
 	width: 100%;
+}
+
+.capsbtn{
+	display: flex;
+	justify-content: center;
+	margin-top:10px;
+	
+}
+
+.button-remover {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin-bottom: 15px;
+  margin-top:15px;
+  border-radius:5px;
+  
+}
+
+.button-editar {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin-bottom: 15px;
+  margin-top:15px;
+  border-radius: 5px;
 }
