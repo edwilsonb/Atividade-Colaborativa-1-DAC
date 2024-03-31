@@ -43,7 +43,7 @@ label {
 }
 
 /* Estilo dos campos de entrada */
-input[type='text'] {
+input {
 	position:relative;
 	padding: 10px;
 	margin-bottom: 20px;
@@ -61,7 +61,14 @@ button {
 	padding: 10px 20px;
 	border-radius: 5px;
 	cursor: pointer;
-	transition: background-color 0.3s ease;
+	transition: 0.3s ease;
+	margin-top: 10px;
+	font-size: 18px;
+
+}
+
+button a {
+	color: #fff;
 }
 
 button:hover {
@@ -75,38 +82,60 @@ button:hover {
 	margin-top: 5px;
 }
 
-.capsbtn{
+header {
+	background-color: #007bff;
+	height: 70px;
 	display: flex;
+	flex-direction: row;
 	justify-content: center;
-	margin-top:10px;
-	
 }
 
-.button-remover {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 10px;
-  margin-bottom: 15px;
-  margin-top:15px;
-  border-radius:5px;
-  
+.menu {
+	margin: auto 0;
 }
 
-.button-editar {
-  background-color: orange;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 10px;
-  margin-bottom: 15px;
-  margin-top:15px;
-  border-radius: 5px;
+a {
+	text-decoration: none;
+}
+
+.menu a {
+	font-size: 25px;
+	color: #fff;
+	padding-bottom: 5px;
+	margin: 20px;
+	border-bottom: solid #007bff 3px;
+}
+
+.menu a:hover {
+	border-bottom: solid #0056b3 3px;
+	transition: 400ms;
+}
+
+.painel {
+	width: 650px;
+	height: 350px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin: auto;
+	margin-top: 100px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+#add-entidades {
+	margin-right: 50px;
+}
+
+.opcoes {
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.opcoes a, button {
+	width: 100%;
 }
