@@ -20,6 +20,12 @@ String nome = (String)recuperado.getNome();
 String endereco = (String)recuperado.getEndereco();
 String data = (String)recuperado.getDataCadastro();
 %>
+<header>
+	<div class="menu">
+		<a class="menu-item" href="index.html">Início</a>
+		<a class="menu-item" href="">Sair</a>
+	</div>
+</header>
 	<h1>Editar Cliente</h1>
 		
 		<form id="Cliente-form" action="updateCliente">

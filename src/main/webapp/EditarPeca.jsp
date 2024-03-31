@@ -20,6 +20,12 @@ String nome = (String)recuperado.getNome();
 long codPeca = recuperado.getCodPeca();
 float valor = recuperado.getValor();
 %>
+<header>
+	<div class="menu">
+		<a class="menu-item" href="index.html">Início</a>
+		<a class="menu-item" href="">Sair</a>
+	</div>
+</header>
 	<h1>Editar Peça</h1>
 		
 		<form id="Peca-form" action="updatePeca">

@@ -22,6 +22,12 @@ String placa = (String)recuperado.getPlaca();
 String marca = (String)recuperado.getMarca();
 String modelo = (String)recuperado.getModelo();
 %>
+<header>
+	<div class="menu">
+		<a class="menu-item" href="index.html">Início</a>
+		<a class="menu-item" href="">Sair</a>
+	</div>
+</header>
 	<h1>Editar Veiculo</h1>
 		
 		<form id="Veiculo-form" action="updateVeiculo">
