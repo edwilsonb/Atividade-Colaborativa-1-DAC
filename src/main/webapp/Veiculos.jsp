@@ -42,7 +42,7 @@
 				<td><%=lista.get(i).getMarca()%></td>
 				<td>
 				<a href="deleteVeiculo?id=<%=lista.get(i).getId()%>"><button class="button-remover">Remover</button></a>
-				<a href="selectVeiculo?id=<%=lista.get(i).getId()%>&idCliente=<%=lista.get(i).getId_Cliente()%>"><button class="button-editar">Editar</button></a>
+				<a href="selectVeiculo?id=<%=lista.get(i).getId()%>"><button class="button-editar">Editar</button></a>
 				</td>
 			</tr>
 			<%} %>

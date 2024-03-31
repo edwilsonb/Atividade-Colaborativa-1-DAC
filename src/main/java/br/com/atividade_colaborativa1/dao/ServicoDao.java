@@ -29,11 +29,11 @@ public class ServicoDao {
     public void criaTabelaServico() {
         String sql = "CREATE TABLE IF NOT EXISTS servico ("
                 + "id SERIAL PRIMARY KEY,"
-                + "tipo VARCHAR(100),"
                 + "cod_servico BIGINT UNIQUE,"
-                + "data VARCHAR(10),"
-                + "descricao TEXT,"
-                + "valor FLOAT"
+                + "valor FLOAT,"
+                + "tipo VARCHAR(100),"
+                + "data VARCHAR(10) NOT NULL,"
+                + "descricao TEXT"
                 + ")";
         
         try {
@@ -46,14 +46,14 @@ public class ServicoDao {
     }
     
     public void inserirServico(Servico servico) {
-        String sql = "INSERT INTO servico (tipo, cod_servico, data, descricao, valor) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO servico (cod_servico, valor, tipo, data, descricao) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, servico.getTipo());
-            stmt.setLong(2, servico.getCodServico());
-            stmt.setString(3, servico.getData());
-            stmt.setString(4, servico.getDescricao());
-            stmt.setFloat(5, servico.getValor());
+            stmt.setLong(1, servico.getCodServico());
+            stmt.setFloat(2, servico.getValor());
+            stmt.setString(3, servico.getTipo());
+            stmt.setString(4, servico.getData());
+            stmt.setString(5, servico.getDescricao());
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
@@ -61,10 +61,10 @@ public class ServicoDao {
         }
     }
     
-    public List<Servico> all() {    
+    public List<Servico> all() { 
 		
 		try {
-			List<Servico> servicos = new ArrayList<Servico>();    
+			List<Servico> servicos = new ArrayList<Servico>(); 
 			PreparedStatement stmt = this.connection.prepareStatement("select * from servico");
 			ResultSet rs = stmt.executeQuery();
 			
@@ -72,10 +72,10 @@ public class ServicoDao {
 				Servico servico = new Servico();
 				servico.setId(rs.getLong("id"));
 				servico.setCodServico(rs.getLong("cod_servico"));
+				servico.setValor(rs.getFloat("valor"));
 				servico.setTipo(rs.getString("tipo"));
 				servico.setData(rs.getString("data"));
 				servico.setDescricao(rs.getString("descricao"));
-				servico.setValor(rs.getFloat("valor"));
 				servicos.add(servico); 
 			}
 			rs.close();
@@ -84,20 +84,21 @@ public class ServicoDao {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}	
-	} 
+	}
     
-    public Servico buscarPorCodServico(long codServico) {
+    public Servico byId(long id) {
         try {
-            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM servico WHERE cod_servico=?");
-            stmt.setLong(1, codServico);
+            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM servico WHERE id=?");
+            stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
             Servico servico = new Servico();
             while (rs.next()) {
-                servico.setTipo(rs.getString("tipo"));
+            		servico.setId(rs.getLong("id"));
                 servico.setCodServico(rs.getLong("cod_servico"));
+                servico.setValor(rs.getFloat("valor"));
+                servico.setTipo(rs.getString("tipo"));
                 servico.setData(rs.getString("data"));
                 servico.setDescricao(rs.getString("descricao"));
-                servico.setValor(rs.getFloat("valor"));
             }
             return servico;
         } catch (SQLException e) {
@@ -105,31 +106,33 @@ public class ServicoDao {
         }
     }
     
-    public Servico atualizarServico(Servico servico) {
+    
+    public Servico atualizarServico(Servico servico, long id) {
         try {
-            PreparedStatement stmt = this.connection.prepareStatement("UPDATE servico SET tipo = ?, data = ?, descricao = ?, valor = ? WHERE cod_servico = ?");
-            stmt.setString(1, servico.getTipo());
-            stmt.setString(2, servico.getData());
-            stmt.setString(3, servico.getDescricao());
-            stmt.setFloat(4, servico.getValor());
+            PreparedStatement stmt = this.connection.prepareStatement("UPDATE servico SET valor = ?, tipo = ?, data = ?, descricao = ?, cod_servico = ?  WHERE id = ?");
+            stmt.setFloat(1, servico.getValor());
+            stmt.setString(2, servico.getTipo());
+            stmt.setString(3, servico.getData());
+            stmt.setString(4, servico.getDescricao());
             stmt.setLong(5, servico.getCodServico());
+            stmt.setLong(6, id);
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected == 0) {
-                throw new RuntimeException("Nenhum serviço foi atualizado. Verifique o código de serviço fornecido.");
+                throw new RuntimeException("Nenhum serviço foi atualizado. Verifique o código do serviço fornecido.");
             }
             return servico;
         } catch (SQLException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
     
-    public void removerServico(long codServico) {
+    public void removerServico(long id) {
         try {
-            PreparedStatement stmt = this.connection.prepareStatement("DELETE FROM servico WHERE cod_servico=?");
-            stmt.setLong(1, codServico);
+            PreparedStatement stmt = this.connection.prepareStatement("DELETE FROM servico WHERE id=?");
+            stmt.setLong(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 }

@@ -3,27 +3,29 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Adicionar Funcionário</title>
+		<title>Adicionar Serviço</title>
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
-		<h1>Adicionar Serviços</h1>
+		<h1>Adicionar Serviço</h1>
 		<form id="funcionario-form" action="addServico">
+		
 			<label for="nome">Tipo:</label>
-			<input type="text" id="nome" name="tipo" required />
+			<input type="text" id="tipo" name="tipo" required />
 
-			<label for="nome">Codigo do Serviço:</label>
-			<input type="text" id="nome" name="codServico" required />
+			<label for="codServico">Codigo do Serviço:</label>
+			<input type="text" id="codServico" name="codServico" required />
 
-			<label for="matricula">Data do Serviço</label>
-			<input type="date" id="endereço" name="endereço"" required />
+			<label for="data">Data do Serviço:</label>
+			<input type="date" id="dataServico" name="dataServico" required />
 
 
-			<label for="Descrição">Descrição:</label>
-			<input type="text" id="Descrição" name="cargo" required />
+			<label for="descricao">Descrição:</label>
+			<input type="text" id="descricao" name="descricao" required />
 
-			<label for="Descrição">Valor:</label>
-			<input type="text" id="valor" name="valor" required />
+			<label for="valor">Valor:</label>
+			<input type="number" id="valor" name="valor" step=".01" required />
+			
 			<button type="submit">Adicionar</button>
 		</form>
 	</body>

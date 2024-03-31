@@ -13,11 +13,10 @@
 <body>
 <%
 Object id = request.getAttribute("id");
-Object idCliente = request.getAttribute("idCliente");
 String idVei = id.toString();
-String idCli = id.toString();
 VeiculoDao veiDao = new VeiculoDao();
 Veiculo recuperado = veiDao.buscarPorId((Long.parseLong(idVei)));
+long idCli = recuperado.getId_Cliente();
 String placa = (String)recuperado.getPlaca();
 String marca = (String)recuperado.getMarca();
 String modelo = (String)recuperado.getModelo();

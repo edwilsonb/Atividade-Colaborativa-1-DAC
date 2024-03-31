@@ -1,6 +1,6 @@
 package br.com.atividade_colaborativa1.entidades;
 
-public class Servico {
+public class Servico implements Comparable<Servico>{
 	private long id;
 	private String tipo;
 	private long codServico;
@@ -50,6 +50,10 @@ public class Servico {
 	public String toString() {
 		return "Servico [id=" + id +", tipo=" + tipo + ", codServico=" + codServico + ", data=" + data + ", descricao=" + descricao
 				+ ", valor=" + valor + "]";
-	}	
+	}
+	@Override
+	public int compareTo(Servico outroServico) {
+		return Long.compare(this.id,outroServico.id);
+		}	
 	
 }

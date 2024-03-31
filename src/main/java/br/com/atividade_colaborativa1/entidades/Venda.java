@@ -2,12 +2,11 @@ package br.com.atividade_colaborativa1.entidades;
 
 import java.util.List;
 
-public class Venda {
+public class Venda implements Comparable<Venda>{
 	private long id;
 	private long codVenda;
 	private long id_Veiculo;
 	private long codServico;
-	private List<Peca> pecas;
 	private float valorVenda;
 	
 	public long getId() {
@@ -44,15 +43,6 @@ public class Venda {
         this.codServico = codServico;
     }
 
-
-    public List<Peca> getPecas() {
-        return pecas;
-    }
-
-    public void setPecas(List<Peca> pecas) {
-        this.pecas = pecas;
-    }
-
     public float getValorVenda() {
         return valorVenda;
     }
@@ -63,8 +53,13 @@ public class Venda {
 
 	@Override
 	public String toString() {
-		return "Venda [id=" + id +", codVenda=" + codVenda + ", id_Veiculo=" + id_Veiculo + ", codServico=" + codServico + ", pecas="
-				+ pecas + ", valorVenda=" + valorVenda + "]";
+		return "Venda [id=" + id +", codVenda=" + codVenda + ", id_Veiculo=" + id_Veiculo + ", codServico=" + codServico + ", valorVenda=" + valorVenda + "]";
+	}
+
+	@Override
+	public int compareTo(Venda outraVenda) {
+		
+		return Long.compare(this.id, outraVenda.id) ;
 	}
     
 }

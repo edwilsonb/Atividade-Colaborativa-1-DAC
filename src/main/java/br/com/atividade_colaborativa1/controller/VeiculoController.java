@@ -58,10 +58,7 @@ public class VeiculoController extends HttpServlet {
 		
 		else if(action.equals("/selectVeiculo")){
 			String id = request.getParameter("id");
-			String idCliente = request.getParameter("idCliente");
 			request.setAttribute("id", id);
-			request.setAttribute("idCliente", idCliente);
-			System.out.println(idCliente);
 			RequestDispatcher rd = request.getRequestDispatcher("EditarVeiculo.jsp");
 			rd.forward(request, response);
 		}

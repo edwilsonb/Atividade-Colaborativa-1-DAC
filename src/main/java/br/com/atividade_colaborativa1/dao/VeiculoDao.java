@@ -70,6 +70,7 @@ public class VeiculoDao {
 			while (rs.next()) {
 				Veiculo veiculo = new Veiculo();
 				veiculo.setId(rs.getLong("id"));
+				veiculo.setId_Cliente(rs.getLong("id_cliente"));
 				veiculo.setPlaca(rs.getString("placa"));
 				veiculo.setModelo(rs.getString("modelo"));
 				veiculo.setMarca(rs.getString("marca")); 
