@@ -1,5 +1,6 @@
 package br.com.atividade_colaborativa1.entidades;
-public class Funcionario {
+
+public class Funcionario implements Comparable<Funcionario>{
     private Long id;
 	private String nomeCompleto;
 	private String endereco;
@@ -34,6 +35,10 @@ public class Funcionario {
 	public String toString() {
 		return "Funcionario [id=" + id + ", nomeCompleto=" + nomeCompleto + ", endereco=" + endereco + ", cargo="
 				+ cargo + "]";
+	}
+	@Override
+	public int compareTo(Funcionario outroFun) {
+		return Long.compare(this.id, outroFun.id);
 	}
 	
     

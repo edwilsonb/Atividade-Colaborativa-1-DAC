@@ -1,6 +1,6 @@
 package br.com.atividade_colaborativa1.entidades;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente> {
 	
 	private Long id;
 	private String nome;
@@ -31,5 +31,13 @@ public class Cliente {
 	public void setDataCadastro(String dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
-	
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", dataCadastro=" + dataCadastro
+				+ "]";
+	}
+	@Override
+	public int compareTo(Cliente outroId) {
+		return Long.compare(this.id, outroId.id);
+	}
 }

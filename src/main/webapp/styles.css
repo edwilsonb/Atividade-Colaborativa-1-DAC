@@ -51,6 +51,8 @@ input[type='text'] {
 	border-radius: 5px;
 }
 
+
+
 /* Estilo do botão */
 button {
 	background-color: #007bff;
@@ -71,4 +73,40 @@ button:hover {
 	color: #ff0000;
 	font-size: 0.8rem;
 	margin-top: 5px;
+}
+
+.capsbtn{
+	display: flex;
+	justify-content: center;
+	margin-top:10px;
+	
+}
+
+.button-remover {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin-bottom: 15px;
+  margin-top:15px;
+  border-radius:5px;
+  
+}
+
+.button-editar {
+  background-color: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin-bottom: 15px;
+  margin-top:15px;
+  border-radius: 5px;
 }

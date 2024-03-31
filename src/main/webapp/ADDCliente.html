@@ -3,22 +3,23 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Adicionar Funcionário</title>
+		<title>Adicionar Cliente</title>
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
 		<h1>Adicionar Cliente</h1>
-		<form id="funcionario-form">
+		<form id="Cliente-form" action="addCliente">
 			<label for="nome">Nome:</label>
 			<input type="text" id="nome" name="nome" required />
-
+			
 			<label for="endereço">Endereço:</label>
-			<input type="text" id="endereço" name="endereço"" required />
+			<input type="text" id="endereço" name="endereço" required />
 
 			<label for="data">Data do cadastro:</label>
 			<input type="date" id="data" name="data" required />
 
 			<button type="submit">Adicionar</button>
 		</form>
+		<a href ="Clientes.jsp"><button type="submit">Voltar</button></a>
 	</body>
 </html>

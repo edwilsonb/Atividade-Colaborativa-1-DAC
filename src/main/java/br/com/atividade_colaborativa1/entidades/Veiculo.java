@@ -1,6 +1,6 @@
 package br.com.atividade_colaborativa1.entidades;
 
-public class Veiculo {
+public class Veiculo implements Comparable<Veiculo> {
 	private long id;
 	private long id_Cliente;
 	private String placa;
@@ -40,6 +40,10 @@ public class Veiculo {
 	public String toString() {
 		return "Veiculo [id=" + id + ", id_Cliente=" + id_Cliente + ", placa=" + placa + ", modelo=" + modelo
 				+ ", marca=" + marca + "]";
+	}
+	@Override
+	public int compareTo(Veiculo outroVeiculo) {
+		return Long.compare(this.id, outroVeiculo.id);
 	}
 	
 }

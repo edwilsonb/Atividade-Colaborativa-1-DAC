@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Adicionar Peça</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<h1>Adicionar Peça</h1>
+		<form id="Cliente-form" action="addPeca">
+			<label for="nome">Nome:</label>
+			<input type="text" id="nome" name="nome" required />
+			
+			<label for="codPeca">Código da Peça:</label>
+			<input type="text" id="codPeca" name="codPeca" required />
+
+			<label for="valor">Valor:</label>
+			<input type="number" step=".01" id="valor" name="valor" required />
+
+			<button type="submit">Adicionar</button>	
+		</form>
+		<a href ="Pecas.jsp"><button type="submit">Voltar</button></a>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Adicionar Venda</title>
+</head>
+<body>
+    <h2>Adicionar Venda</h2>
+    
+    <form action="VendaController" method="post" id="vendaForm">
+        <label for="codServico">Código do Serviço:</label>
+        <input type="text" id="codServico" name="codServico"><br>
+        
+        <label for="idVeiculo">ID do Veículo:</label>
+        <input type="text" id="idVeiculo" name="idVeiculo"><br>
+        
+        <label for="valorVenda">Valor da Venda:</label>
+        <input type="text" id="valorVenda" name="valorVenda"><br>
+        
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id"><br>
+        
+        <label for="codVenda">Código da Venda:</label>
+        <input type="text" id="codVenda" name="codVenda"><br>
+        
+        <div id="pecasContainer"></div>
+        
+        <button type="button" onclick="adicionarPeca()">Adicionar Peça</button>
+        <button type="button" onclick="removerPeca()">Remover Última Peça</button>
+        
+        <input type="submit" value="Adicionar Venda">
+    </form>
+
+    <script>
+        let contadorPecas = 0;
+
+        function adicionarPeca() {
+            contadorPecas++;
+
+            const container = document.getElementById("pecasContainer");
+            const input = document.createElement("input");
+            input.type = "text";
+            input.name = `peca${contadorPecas}`;
+            input.placeholder = `Peça ${contadorPecas}`;
+            container.appendChild(input);
+        }
+
+        function removerPeca() {
+            const container = document.getElementById("pecasContainer");
+            container.removeChild(container.lastChild);
+            contadorPecas--;
+        }
+    </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 package br.com.atividade_colaborativa1.entidades;
 
-public class Peca {
+public class Peca implements Comparable<Peca>{
 	private long id;
 	private long codPeca;
 	private float valor;
@@ -34,5 +34,9 @@ public class Peca {
 	@Override
 	public String toString() {
 		return "Peca [id=" + id +", codPeca=" + codPeca + ", valor=" + valor + ", nome=" + nome + "]";
+	}
+	@Override
+	public int compareTo(Peca outraPeca) {
+		return Long.compare(this.id,outraPeca.id);
 	}
 }
