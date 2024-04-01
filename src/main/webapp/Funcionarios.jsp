@@ -46,6 +46,8 @@
 			<%} %>
 		</tbody>
 	</table>
-	<div class = "capsbtn"><a href="ADDFuncionario.html"><button>Adicionar Funcionario</button></a></div>
+	<div class = "capsbtn">
+	<a href="index.html"><button>Voltar</button></a>
+	<a href="ADDFuncionario.html"><button>Adicionar Funcionario</button></a></div>
 	</body>
 </html>

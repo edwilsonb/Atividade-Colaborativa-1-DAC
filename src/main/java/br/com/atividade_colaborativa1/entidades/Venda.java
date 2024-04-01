@@ -4,7 +4,6 @@ import java.util.List;
 
 public class Venda implements Comparable<Venda>{
 	private long id;
-	private long codVenda;
 	private long id_Veiculo;
 	private long codServico;
 	private float valorVenda;
@@ -16,15 +15,6 @@ public class Venda implements Comparable<Venda>{
 	public void setId(long id) {
 		this.id = id;
 	}
-	
-
-    public long getCodVenda() {
-        return codVenda;
-    }
-
-    public void setCodVenda(long codVenda) {
-        this.codVenda = codVenda;
-    }
 
     public long getId_Veiculo() {
 		return id_Veiculo;
@@ -53,7 +43,7 @@ public class Venda implements Comparable<Venda>{
 
 	@Override
 	public String toString() {
-		return "Venda [id=" + id +", codVenda=" + codVenda + ", id_Veiculo=" + id_Veiculo + ", codServico=" + codServico + ", valorVenda=" + valorVenda + "]";
+		return "Venda [id=" + id + ", id_Veiculo=" + id_Veiculo + ", codServico=" + codServico + ", valorVenda=" + valorVenda + "]";
 	}
 
 	@Override

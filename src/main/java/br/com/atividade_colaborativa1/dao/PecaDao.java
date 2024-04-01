@@ -99,6 +99,25 @@ public class PecaDao {
     }
     
     
+    public Peca byCodPeca(long codPeca) {
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM peca WHERE cod_peca=?");
+            stmt.setLong(1, codPeca);
+            ResultSet rs = stmt.executeQuery();
+            Peca peca = new Peca();
+            while (rs.next()) {
+            		peca.setId(rs.getLong("id"));
+                peca.setCodPeca(rs.getLong("cod_peca"));
+                peca.setValor(rs.getFloat("valor"));
+                peca.setNome(rs.getString("nome"));
+            }
+            return peca;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    
     public Peca atualizarPeca(Peca peca, long id) {
         try {
             PreparedStatement stmt = this.connection.prepareStatement("UPDATE peca SET valor = ?, nome = ? WHERE id = ?");

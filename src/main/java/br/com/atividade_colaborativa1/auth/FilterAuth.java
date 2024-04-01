@@ -3,7 +3,6 @@ package br.com.atividade_colaborativa1.auth;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -37,7 +36,6 @@ public class FilterAuth extends HttpFilter implements Filter {
             return;
         }
         
-        String loginPage = httpRequest.getContextPath() + "/Login.html";
         if (requestURI.endsWith("/Login.html")) {
             chain.doFilter(request, response);
             return;

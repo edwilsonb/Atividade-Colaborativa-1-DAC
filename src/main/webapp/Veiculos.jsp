@@ -49,6 +49,7 @@
 		</tbody>
 	</table>
 	<div class = "capsbtn">
+	<a href="index.html"><button>Voltar</button></a>
 	<a href="ADDVeiculo.html"><button>Adicionar Veículo</button></a></div>
 	</body>
 </html>

@@ -135,4 +135,24 @@ public class ServicoDao {
             throw new RuntimeException(e);
         }
     }
+
+	public Servico byCodServico(long codServico) {
+		try {
+            PreparedStatement stmt = this.connection.prepareStatement("SELECT * FROM servico WHERE cod_servico=?");
+            stmt.setLong(1, codServico);
+            ResultSet rs = stmt.executeQuery();
+            Servico servico = new Servico();
+            while (rs.next()) {
+            		servico.setId(rs.getLong("id"));
+                servico.setCodServico(rs.getLong("cod_servico"));
+                servico.setValor(rs.getFloat("valor"));
+                servico.setTipo(rs.getString("tipo"));
+                servico.setData(rs.getString("data"));
+                servico.setDescricao(rs.getString("descricao"));
+            }
+            return servico;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

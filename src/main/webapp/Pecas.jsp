@@ -46,6 +46,8 @@
 			<%} %>
 		</tbody>
 	</table>
-	<div class = "capsbtn"><a href="ADDPeca.html"><button>Adicionar Peça</button></a></div>
+	<div class = "capsbtn">
+	<a href="index.html"><button>Voltar</button></a>
+	<a href="ADDPeca.html"><button>Adicionar Peça</button></a></div>
 	</body>
 </html>

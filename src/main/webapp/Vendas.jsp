@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ page import= "br.com.atividade_colaborativa1.dao.VendaDao"%>
+<%@ page import= "br.com.atividade_colaborativa1.dao.VeiculoDao"%>
 <%@ page import= "br.com.atividade_colaborativa1.entidades.Venda"%>
+<%@ page import= "br.com.atividade_colaborativa1.entidades.Veiculo"%>
 <%@ page import= "java.util.List"%>
 <%@ page import= "java.util.Collections"%>
 <!DOCTYPE html>
@@ -17,8 +19,7 @@
         <thead>
             <tr>                
                 <th>Id</th>
-                <th>Código da Venda</th>
-                <th>Id do Veículo</th>
+                <th>Veículo</th>
                 <th>Código do Serviço</th>
                 <th>Valor da Venda</th>
                 <th>Ações</th>
@@ -28,26 +29,31 @@
             <%
             
             VendaDao vendaDao = new VendaDao();
+            VeiculoDao veiculoDao = new VeiculoDao();
             
             List<Venda> lista = vendaDao.all();
             
             Collections.sort(lista);
             
-            for (int i=0; i<lista.size(); i++) { %>
-            <tr>
-                <td><%=lista.get(i).getId()%></td>
-                <td><%=lista.get(i).getCodVenda()%></td>
-                <td><%=lista.get(i).getId_Veiculo()%></td>
-                <td><%=lista.get(i).getCodServico()%></td>
-                <td><%=lista.get(i).getValorVenda()%></td>
-                <td>
-                <a href="deleteVenda?id=<%=lista.get(i).getId()%>"><button class="button-remover">Remover</button></a>
-                <a href="selectVenda?id=<%=lista.get(i).getId()%>"><button class="button-editar">Editar</button></a>
-                </td>
-            </tr>
+            for (int i=0; i<lista.size(); i++) {
+                Venda venda = lista.get(i);
+                Veiculo veiculo = veiculoDao.buscarPorId(venda.getId_Veiculo());
+                %>
+                <tr>
+                    <td><%=venda.getId()%></td>
+                    <td><%=veiculo.getModelo()%></td>
+                    <td><%=venda.getCodServico()%></td>
+                    <td><%=venda.getValorVenda()%></td>
+                    <td>
+                        <a href="deleteVenda?id=<%=venda.getId()%>"><button class="button-remover">Remover</button></a>
+                        <a href="selectVenda?id=<%=venda.getId()%>"><button class="button-editar">Editar</button></a>
+                    </td>
+                </tr>
             <%} %>
         </tbody>
     </table>
-    <div class="capsbtn"><a href="ADDVenda.html"><button>Adicionar Venda</button></a></div>
+    <div class="capsbtn">
+    <a href="index.html"><button>Voltar</button></a>
+    <a href="ADDVenda.jsp"><button>Adicionar Venda</button></a></div>
 </body>
 </html>

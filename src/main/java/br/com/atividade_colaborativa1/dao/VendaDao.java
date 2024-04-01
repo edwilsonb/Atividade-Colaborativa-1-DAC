@@ -26,7 +26,6 @@ public class VendaDao {
     public void criaTabelaVenda() {
         String sql = "CREATE TABLE IF NOT EXISTS venda (" +
                 "id SERIAL PRIMARY KEY," +
-                "cod_venda BIGINT NOT NULL," +
                 "id_veiculo BIGINT NOT NULL," +
                 "cod_servico BIGINT NOT NULL," +
                 "valor_venda FLOAT NOT NULL)";
@@ -42,15 +41,14 @@ public class VendaDao {
     }
 
     public void insereVenda(Venda venda) {
-        String sql = "INSERT INTO venda (cod_venda, id_veiculo, cod_servico, valor_venda) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO venda (id_veiculo, cod_servico, valor_venda) VALUES (?,?,?)";
 
         try {
             PreparedStatement stmt = this.connection.prepareStatement(sql);
 
-            stmt.setLong(1, venda.getCodVenda());
-            stmt.setLong(2, venda.getId_Veiculo());
-            stmt.setLong(3, venda.getCodServico());
-            stmt.setFloat(4, venda.getValorVenda());
+            stmt.setLong(1, venda.getId_Veiculo());
+            stmt.setLong(2, venda.getCodServico());
+            stmt.setFloat(3, venda.getValorVenda());
             stmt.execute();
             stmt.close();
 
@@ -70,7 +68,6 @@ public class VendaDao {
             Venda venda = new Venda();
             while (rs.next()) {
                 venda.setId(id);
-                venda.setCodVenda(rs.getLong("cod_venda"));
                 venda.setId_Veiculo(rs.getLong("id_veiculo"));
                 venda.setCodServico(rs.getLong("cod_servico"));
                 venda.setValorVenda(rs.getFloat("valor_venda"));
@@ -90,7 +87,6 @@ public class VendaDao {
             while (rs.next()) {
                 Venda venda = new Venda();
                 venda.setId(rs.getLong("id"));
-                venda.setCodVenda(rs.getLong("cod_venda"));
                 venda.setId_Veiculo(rs.getLong("id_veiculo"));
                 venda.setCodServico(rs.getLong("cod_servico"));
                 venda.setValorVenda(rs.getFloat("valor_venda"));
@@ -106,15 +102,14 @@ public class VendaDao {
     }
 
     public void atualizar(Venda venda, long id) {
-        String sql = "UPDATE venda SET cod_venda=?, id_veiculo=?, cod_servico=?, valor_venda=? WHERE id=?";
+        String sql = "UPDATE venda SET id_veiculo=?, cod_servico=?, valor_venda=? WHERE id=?";
 
         try {
             PreparedStatement stmt = this.connection.prepareStatement(sql);
-            stmt.setLong(1, venda.getCodVenda());
-            stmt.setLong(2, venda.getId_Veiculo());
-            stmt.setLong(3, venda.getCodServico());
-            stmt.setFloat(4, venda.getValorVenda());
-            stmt.setLong(5, id);
+            stmt.setLong(1, venda.getId_Veiculo());
+            stmt.setLong(2, venda.getCodServico());
+            stmt.setFloat(3, venda.getValorVenda());
+            stmt.setLong(4, id);
             stmt.execute();
             stmt.close();
 
