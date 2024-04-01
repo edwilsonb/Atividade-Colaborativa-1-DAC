@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.atividade_colaborativa1.dao.ClienteDao;
 import br.com.atividade_colaborativa1.dao.VeiculoDao;
 import br.com.atividade_colaborativa1.entidades.Veiculo;
 
@@ -18,13 +19,15 @@ public class VeiculoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	VeiculoDao veiDao = new VeiculoDao();
+	ClienteDao cliDao = new ClienteDao();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getServletPath();
 		if(action.equals("/addVeiculo")) {
 		
 		Veiculo vei = new Veiculo();
-		vei.setId_Cliente(Long.parseLong(request.getParameter("idCliente")));
+		
+		vei.getCliente().setId(Long.parseLong(request.getParameter("idCliente")));
 		vei.setPlaca(request.getParameter("placa"));
 		vei.setMarca(request.getParameter("marca"));
 		vei.setModelo(request.getParameter("modelo"));

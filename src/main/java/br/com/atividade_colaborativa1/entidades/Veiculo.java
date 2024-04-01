@@ -3,9 +3,17 @@ package br.com.atividade_colaborativa1.entidades;
 public class Veiculo implements Comparable<Veiculo> {
 	private long id;
 	private long id_Cliente;
+	private Cliente cliente = new Cliente();
 	private String placa;
 	private String modelo;
 	private String marca;
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	public long getId() {
 		return id;
 	}

@@ -49,7 +49,8 @@ public class VeiculoDao {
         String sql = "INSERT INTO veiculo (id_cliente, placa, modelo, marca) VALUES (?, ?, ?, ?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setLong(1, veiculo.getId_Cliente());
+            //stmt.setLong(1, veiculo.getId_Cliente());
+            stmt.setLong(1, veiculo.getCliente().getId());
             stmt.setString(2, veiculo.getPlaca());
             stmt.setString(3, veiculo.getModelo());
             stmt.setString(4, veiculo.getMarca());
